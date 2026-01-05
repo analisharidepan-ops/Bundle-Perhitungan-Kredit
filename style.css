@@ -1,36 +1,148 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
 body {
-  font-family: Arial;
-  background: #f4f6f8;
+  margin: 0;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(90deg, #f59e0b, #2563eb);
+  padding: 15px 20px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-area img {
+  height: 60px;
+}
+
+.title h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+}
+
+.title p {
+  margin: 0;
+  color: #e0e7ff;
+  font-size: 14px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background: #ffffff;
+}
+
+.hero h2 {
+  color: #1e40af;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #555;
+}
+
+/* MENU */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #111;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #1d4ed8;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  background: #1e3a8a;
+  color: #fff;
+}
+.form-area {
   padding: 20px;
 }
 
-h2 {
-  text-align: center;
+.form-card {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-.form, .hasil {
-  background: white;
+.form-card label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.form-card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.form-card button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.hasil {
+  margin-top: 20px;
   padding: 15px;
-  max-width: 420px;
-  margin: 15px auto;
+  background: #f1f5f9;
   border-radius: 8px;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
+.acc {
+  color: green;
 }
 
-input, select {
-  width: 100%;
-  padding: 6px;
+.tolak {
+  color: red;
 }
 
-button {
-  margin-top: 15px;
-  width: 100%;
-  padding: 8px;
-  background: #2563eb;
-  color: white;
-  border: none;
+.back {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #1e40af;
 }

@@ -1,24 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Proposal Kredit</title>
+  <meta charset="UTF-8">
+  <title>Proposal Kredit | BPR Hari Depan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<a href="index.html">⬅ Kembali</a>
+<!-- HEADER -->
+<header class="header">
+  <div class="logo-area">
+    <img src="logo.png" alt="BPR Hari Depan">
+    <div class="title">
+      <h1>BPR Hari Depan</h1>
+      <p>Mitra Hari Depan Terpercaya</p>
+    </div>
+  </div>
+</header>
 
-<h2>Proposal Kredit</h2>
+<!-- CONTENT -->
+<section class="hero">
+  <h2>Proposal Kredit</h2>
+  <p>Analisa kelayakan kredit nasabah</p>
+</section>
 
-<input id="plafon" placeholder="Plafon Kredit"><br>
-<input id="tenor" placeholder="Tenor (bulan)"><br>
-<input id="bunga" placeholder="Bunga (%)"><br>
-<input id="angsuranLain" placeholder="Angsuran Bank Lain"><br>
-<input id="penghasilan" placeholder="Penghasilan"><br>
-<input id="pengeluaran" placeholder="Pengeluaran"><br>
+<section class="form-area">
+  <a href="index.html" class="back">⬅ Kembali ke Menu</a>
 
-<button onclick="hitung()">Hitung</button>
+  <div class="form-card">
+    <label>Plafon Kredit</label>
+    <input id="plafon" type="number">
 
-<div id="hasil"></div>
+    <label>Tenor (bulan)</label>
+    <input id="tenor" type="number">
+
+    <label>Bunga (%)</label>
+    <input id="bunga" type="number">
+
+    <label>Total Angsuran Bank Lain</label>
+    <input id="angsuranLain" type="number">
+
+    <label>Penghasilan</label>
+    <input id="penghasilan" type="number">
+
+    <label>Pengeluaran</label>
+    <input id="pengeluaran" type="number">
+
+    <button onclick="hitung()">Hitung Proposal</button>
+
+    <div id="hasil" class="hasil"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 PT BPR Hari Depan • Sistem Internal
+</footer>
 
 <script>
 function hitung() {
