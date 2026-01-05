@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Proposal Kredit</title>
+</head>
+<body>
+
+<a href="index.html">⬅ Kembali</a>
+
+<h2>Proposal Kredit</h2>
+
+<input id="plafon" placeholder="Plafon Kredit"><br>
+<input id="tenor" placeholder="Tenor (bulan)"><br>
+<input id="bunga" placeholder="Bunga (%)"><br>
+<input id="angsuranLain" placeholder="Angsuran Bank Lain"><br>
+<input id="penghasilan" placeholder="Penghasilan"><br>
+<input id="pengeluaran" placeholder="Pengeluaran"><br>
+
+<button onclick="hitung()">Hitung</button>
+
+<div id="hasil"></div>
+
+<script>
+function hitung() {
+
+  let plafon = Number(document.getElementById("plafon").value);
+  let tenor = Number(document.getElementById("tenor").value);
+  let bunga = Number(document.getElementById("bunga").value) / 100;
+  let angsuranLain = Number(document.getElementById("angsuranLain").value);
+  let penghasilan = Number(document.getElementById("penghasilan").value);
+  let pengeluaran = Number(document.getElementById("pengeluaran").value);
+
+  let bungaBulanan = bunga / 12;
+  let angsuranPokok = plafon / tenor;
+  let angsuranBunga = plafon * bungaBulanan;
+  let angsuran = angsuranPokok + angsuranBunga;
+  let penghasilanBersih = penghasilan - pengeluaran;
+
+  let totalAngsuran = angsuran + angsuranLain;
+  let disposalIncome = penghasilanBersih - totalAngsuran;
+
+  let iir = totalAngsuran / penghasilan;
+  let idir = totalAngsuran / disposalIncome;
+
+  let keputusan =
+    (iir > 0.40 && idir > 1.50) ? "D I T O L A K" :
+    (iir < 0 && idir < 0) ? "DITOLAK" :
+    (iir < 0 || idir < 0) ? "DITOLAK" :
+    (iir > 0.40 || idir > 1.50) ? "DIPERTIMBANGKAN" :
+    (iir < 0.40 && idir < 1.50) ? "D I T E R I M A" :
+    "-";
+
+  document.getElementById("hasil").innerHTML = `
+    <p>IIR: ${(iir * 100).toFixed(2)}%</p>
+    <p>IDIR: ${(idir * 100).toFixed(2)}%</p>
+    <h3>Keputusan Kredit: ${keputusan}</h3>
+  `;
+}
+</script>

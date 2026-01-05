@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simulasi Angsuran</title>
+</head>
+<body>
+
+<a href="index.html">⬅ Kembali</a>
+
+<h2>Simulasi Angsuran</h2>
+
+<input id="plafon" placeholder="Plafon Kredit"><br>
+<input id="tenor" placeholder="Tenor (bulan)"><br>
+<input id="bunga" placeholder="Bunga (%)"><br>
+
+<button onclick="hitung()">Hitung</button>
+
+<div id="hasil"></div>
+
+<script>
+function hitung() {
+  let plafon = Number(document.getElementById("plafon").value);
+  let tenor = Number(document.getElementById("tenor").value);
+  let bunga = Number(document.getElementById("bunga").value) / 100;
+
+  let angsuran = (plafon + plafon * bunga) / tenor;
+
+  document.getElementById("hasil").innerHTML =
+    "Angsuran per bulan: Rp " + angsuran.toFixed(0);
+}
+</script>
+
+</body>
+</html>
