@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulasi Angsuran Back To Back | BPR Hari Depan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="logo-area">
+    <img src="logo.png" alt="BPR Hari Depan">
+    <div class="title">
+      <h1>BPR Hari Depan</h1>
+      <p>Mitra Hari Depan Terpercaya</p>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <h2>Simulasi Angsuran Kredit Back to Back</h2>
+  <p>Perhitungan angsuran kredit berdasarkan plafon, tenor, dan bunga</p>
+</section>
+
+<!-- ================= FORM ================= -->
+<section class="form-area">
+  <a href="index.html" class="back">⬅ Kembali ke Menu</a>
+
+  <div class="form-card">
+
+    <label>Plafon Kredit</label>
+    <input type="number" id="plafon" placeholder="Contoh: 50000000">
+
+    <label>Jangka Waktu (bulan)</label>
+    <input type="number" id="tenor" placeholder="Contoh: 36">
+
+    <label>Suku Bunga (% per tahun)</label>
+    <input type="number" id="bunga" placeholder="Note: Bunga Tabungan/Deposito + 5%">
+
+
+    <button onclick="hitungAngsuran()">Hitung Angsuran</button>
+
+    <div id="hasil" class="hasil"></div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  © 2026 PT BPR Hari Depan • Sistem Internal
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+function hitungAngsuran() {
+
+  const plafon = Number(document.getElementById("plafon").value);
+  const tenor = Number(document.getElementById("tenor").value);
+  const bungaTahunan = Number(document.getElementById("bunga").value) / 100;
+
+  if (
+    isNaN(plafon) || plafon <= 0 ||
+    isNaN(tenor) || tenor <= 0 ||
+    isNaN(bungaTahunan)
+  ) {
+    document.getElementById("hasil").innerHTML =
+      "<p style='color:red'>Semua data wajib diisi dengan benar</p>";
+    return;
+  }
+
+  /* ===== PERHITUNGAN ANGSURAN (FLAT) ===== */
+  const bungaBulanan = bungaTahunan / 12;
+  const angsuranPokok = plafon / tenor;
+  const angsuranBunga = plafon * bungaBulanan;
+  const totalAngsuran = angsuranPokok + angsuranBunga;
+
+  /* ===== PROVISI ===== */
+  const provisi = plafon * 0.005; // 0.5% provisi
+
+  /* ===== BIAYA TAMBAHAN (RUMUS EXCEL IF) =====
+     =IF(plafon<=100jt; totalAngsuran+50000;
+      IF(plafon<=250jt; totalAngsuran+100000;
+       IF(plafon<=500jt; totalAngsuran+150000;
+        totalAngsuran+250000)))
+  */
+  let materasi = 40000; // contoh materasi tetap
+  let administrasi = plafon * 0.005; // 0.5% administrasi
+  
+
+  /* ===== TOTAL POTONGAN & DANA BERSIH ===== */
+  const totalPotongan = provisi + materasi + administrasi;;
+  const danaBersih = plafon - totalPotongan;
+
+  document.getElementById("hasil").innerHTML = `
+    <p><b>Angsuran Pokok:</b> Rp ${angsuranPokok.toLocaleString()}</p>
+    <p><b>Angsuran Bunga:</b> Rp ${angsuranBunga.toLocaleString()}</p>
+    <p><b>Total Angsuran / Bulan:</b> Rp ${totalAngsuran.toLocaleString()}</p>
+    <hr>
+    <p><b>Provisi:</b> Rp ${provisi.toLocaleString()}</p>
+    <p><b>Biaya Administrasi:</b> Rp ${administrasi.toLocaleString()}</p>
+    <p><b>Biaya Materai:</b> Rp ${materasi.toLocaleString()}</p>
+    <p><b>Total Potongan:</b> Rp ${totalPotongan.toLocaleString()}</p>
+    <hr>
+    <h3 class="acc">Dana Bersih Diterima: Rp ${danaBersih.toLocaleString()}</h3>
+  `;
+}
+</script>
